@@ -1,0 +1,726 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS 1.6 — Community</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Rajdhani, Arial, sans-serif;
+      background: #090b0e;
+      color: #f5f5f5;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7%;
+      background: #0b0d10;
+      border-bottom: 1px solid #252a30;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #f4a900;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #bbb;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    nav a:hover {
+      color: #f4a900;
+    }
+
+    .menu {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 610px;
+      display: flex;
+      align-items: center;
+      padding: 70px 8%;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5, 7, 9, .95),
+          rgba(5, 7, 9, .58),
+          rgba(5, 7, 9, .9)
+        ),
+        url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=80")
+        center / cover;
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .badge {
+      color: #f4a900;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    h1 {
+      font-size: clamp(58px, 9vw, 110px);
+      line-height: .85;
+      margin: 20px 0;
+      font-weight: 700;
+    }
+
+    h1 span {
+      color: #f4a900;
+    }
+
+    .hero p {
+      font-size: 21px;
+      color: #c7c7c7;
+      max-width: 580px;
+      margin-bottom: 30px;
+    }
+
+    /* BUTTONS */
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 26px;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border: 1px solid #f4a900;
+    }
+
+    .primary {
+      background: #f4a900;
+      color: #111;
+    }
+
+    .primary:hover {
+      background: #ffbd28;
+    }
+
+    .secondary {
+      color: white;
+      border-color: #555;
+    }
+
+    .secondary:hover {
+      border-color: #f4a900;
+    }
+
+    /* STATS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: #11151a;
+      border-bottom: 1px solid #242a30;
+    }
+
+    .stats div {
+      padding: 28px;
+      text-align: center;
+      border-right: 1px solid #242a30;
+    }
+
+    .stats strong {
+      display: block;
+      font-size: 34px;
+      color: #f4a900;
+    }
+
+    .stats small {
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* SECTION */
+
+    .section {
+      padding: 85px 8%;
+    }
+
+    .section-title {
+      margin-bottom: 35px;
+    }
+
+    .section-title span {
+      color: #f4a900;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .section-title h2 {
+      font-size: 46px;
+      margin-top: 4px;
+    }
+
+    /* SERVERS */
+
+    .server-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .server-card {
+      background: #11151a;
+      border: 1px solid #272d33;
+      padding: 25px;
+      transition: .25s;
+    }
+
+    .server-card:hover {
+      transform: translateY(-5px);
+      border-color: #f4a900;
+    }
+
+    .server-top {
+      color: #75d879;
+      font-size: 14px;
+    }
+
+    .server-top b {
+      float: right;
+      color: #ddd;
+    }
+
+    .status {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #67d16d;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .server-card h3 {
+      font-size: 28px;
+      margin: 20px 0 5px;
+    }
+
+    .server-card p {
+      color: #999;
+    }
+
+    .server-info {
+      display: flex;
+      justify-content: space-between;
+      margin: 25px 0;
+      color: #aaa;
+    }
+
+    .server-card button {
+      width: 100%;
+      padding: 12px;
+      background: #191e24;
+      color: #f4a900;
+      border: 1px solid #343b42;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+    }
+
+    /* DOWNLOAD */
+
+    .download {
+      background: #0d1014;
+    }
+
+    .download-box {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      background: linear-gradient(110deg, #171c22, #101317);
+      padding: 35px;
+      border: 1px solid #2d3339;
+    }
+
+    .download-icon {
+      font-size: 55px;
+      color: #f4a900;
+    }
+
+    .download-box span {
+      color: #f4a900;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .download-box h2 {
+      font-size: 35px;
+    }
+
+    .download-box p {
+      color: #999;
+      margin-top: 5px;
+    }
+
+    .download-box .btn {
+      margin-left: auto;
+    }
+
+    /* ABOUT */
+
+    .about p {
+      max-width: 850px;
+      color: #aaa;
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 30px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #252a30;
+      color: #777;
+    }
+
+    /* TOAST */
+
+    #toast {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      background: #f4a900;
+      color: #111;
+      padding: 14px 20px;
+      font-weight: 700;
+      transform: translateY(100px);
+      transition: .3s;
+      z-index: 20;
+    }
+
+    #toast.show {
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      nav {
+        display: none;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .navbar {
+        padding: 0 5%;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .server-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .download-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .download-box .btn {
+        margin-left: 0;
+      }
+
+      .section {
+        padding: 60px 5%;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="logo">
+      <span>CS</span> 1.6
+    </div>
+
+    <nav>
+      <a href="#home">Bosh sahifa</a>
+      <a href="#servers">Serverlar</a>
+      <a href="#download">Yuklab olish</a>
+      <a href="#about">Biz haqimizda</a>
+    </nav>
+
+    <button class="menu" onclick="toggleMenu()">☰</button>
+
+  </header>
+
+
+  <main>
+
+    <!-- HOME -->
+
+    <section id="home" class="hero">
+
+      <div class="hero-content">
+
+        <div class="badge">
+          LEGENDARY FPS • SINCE 1999
+        </div>
+
+        <h1>
+          COUNTER-STRIKE<br>
+          <span>1.6</span>
+        </h1>
+
+        <p>
+          Klassik janglar, kuchli serverlar va haqiqiy
+          CS 1.6 atmosferasi.
+        </p>
+
+        <div class="buttons">
+
+          <a class="btn primary" href="#download">
+            YUKLAB OLISH
+          </a>
+
+          <a class="btn secondary" href="#servers">
+            SERVERLARNI KO‘RISH
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats">
+
+      <div>
+        <strong>24/7</strong>
+        <small>Serverlar</small>
+      </div>
+
+      <div>
+        <strong>1.6</strong>
+        <small>Classic Version</small>
+      </div>
+
+      <div>
+        <strong>100%</strong>
+        <small>Community</small>
+      </div>
+
+      <div>
+        <strong>32</strong>
+        <small>Max Players</small>
+      </div>
+
+    </section>
+
+
+    <!-- SERVERS -->
+
+    <section id="servers" class="section">
+
+      <div class="section-title">
+        <span>ONLINE</span>
+        <h2>SERVERLAR</h2>
+      </div>
+
+      <div class="server-grid">
+
+        <article class="server-card">
+
+          <div class="server-top">
+            <span class="status"></span>
+            ONLINE
+            <b>18/32</b>
+          </div>
+
+          <h3>Dust2 • Public</h3>
+
+          <p>Classic public server</p>
+
+          <div class="server-info">
+            <span>🗺️ de_dust2</span>
+            <span>⚡ 32 yoqtirishlar</span>
+          </div>
+
+          <button onclick="copyIP('45.12.34.56:27015')">
+            IP: 45.12.34.56:27015
+          </button>
+
+        </article>
+
+
+        <article class="server-card">
+
+          <div class="server-top">
+            <span class="status"></span>
+            ONLINE
+            <b>24/32</b>
+          </div>
+
+          <h3>AWP • Pro</h3>
+
+          <p>AWP only server</p>
+
+          <div class="server-info">
+            <span>🗺️ awp_india</span>
+            <span>⚡ 26 yoqtirishlar</span>
+          </div>
+
+          <button onclick="copyIP('45.12.34.57:27015')">
+            IP: 45.12.34.57:27015
+          </button>
+
+        </article>
+
+
+        <article class="server-card">
+
+          <div class="server-top">
+            <span class="status"></span>
+            ONLINE
+            <b>11/20</b>
+          </div>
+
+          <h3>Zombie • Mod</h3>
+
+          <p>Zombie plague mode</p>
+
+          <div class="server-info">
+            <span>🗺️ zm_dust</span>
+            <span>⚡ 20 yoqtirishlar</span>
+          </div>
+
+          <button onclick="copyIP('45.12.34.58:27015')">
+            IP: 45.12.34.58:27015
+          </button>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- DOWNLOAD -->
+
+    <section id="download" class="download section">
+
+      <div class="download-box">
+
+        <div class="download-icon">
+          ⚔
+        </div>
+
+        <div>
+          <span>CLASSIC EXPERIENCE</span>
+
+          <h2>CS 1.6 NI YUKLAB OLING</h2>
+
+          <p>
+            Yengil, tezkor va klassik Counter-Strike 1.6 tajribasi.
+          </p>
+        </div>
+
+        <a
+          class="btn primary"
+          href="#"
+          onclick="fakeDownload(event)"
+        >
+          DOWNLOAD
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about" class="section about">
+
+      <div class="section-title">
+        <span>COMMUNITY</span>
+        <h2>BIZ HAQIMIZDA</h2>
+      </div>
+
+      <p>
+        Bu demo sayt CS 1.6 o‘yinchilari uchun yaratilgan.
+        Serverlar, yangiliklar, turnirlar va hamjamiyat
+        ma'lumotlarini bitta joyda ko‘rsatish uchun moslashtirilgan.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="logo">
+      <span>CS</span> 1.6
+    </div>
+
+    <p>
+      © 2026 CS 1.6 Community • Fan-made website
+    </p>
+
+  </footer>
+
+
+  <!-- TOAST -->
+
+  <div id="toast"></div>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    function copyIP(ip) {
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(ip)
+          .then(() => {
+            showToast("Server IP nusxalandi: " + ip);
+          })
+          .catch(() => {
+            showToast("IP: " + ip);
+          });
+      } else {
+        showToast("IP: " + ip);
+      }
+
+    }
+
+
+    function fakeDownload(e) {
+
+      e.preventDefault();
+
+      showToast(
+        "Download tugmasi demo rejimida ishlayapti."
+      );
+
+    }
+
+
+    function showToast(text) {
+
+      const toast = document.getElementById("toast");
+
+      toast.textContent = text;
+
+      toast.classList.add("show");
+
+      setTimeout(() => {
+
+        toast.classList.remove("show");
+
+      }, 2500);
+
+    }
+
+
+    function toggleMenu() {
+
+      const nav = document.querySelector("nav");
+
+      if (nav.style.display === "flex") {
+
+        nav.style.display = "none";
+
+      } else {
+
+        nav.style.display = "flex";
+
+        nav.style.position = "absolute";
+
+        nav.style.top = "72px";
+
+        nav.style.right = "5%";
+
+        nav.style.flexDirection = "column";
+
+        nav.style.background = "#0b0d10";
+
+        nav.style.padding = "20px";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
